@@ -5,13 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ngpod-scraper"
-    gem.summary = %Q{National Geographic Photo of the Day Screen Scraper}
-    gem.description = %Q{A tool for scraping National Geographic's Photo of the Day}
+    gem.summary = "National Geographic Photo of the Day Screen Scraper"
+    gem.description = "A tool for scraping National Geographic's Photo of the Day"
     gem.email = "[gsmendoza@gmail.com]"
     gem.homepage = "http://github.com/gsmendoza/ngpod-scraper"
     gem.authors = ["George Mendoza"]
     gem.add_development_dependency "rspec", ">= 1.3.0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
