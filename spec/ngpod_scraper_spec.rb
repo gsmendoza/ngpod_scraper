@@ -6,8 +6,8 @@ describe "NgpodScraper" do
       path = 'spec/fixtures/config.yml'
 
       config = YAML.load_file(path)
-      config.class.should == Hash
-      config.empty?.should == false
+      config.should be_a(Hash)
+      config.should_not be_empty
 
       client = NgpodScraper.client(path)
       client.config.should == config
