@@ -12,7 +12,7 @@ Spec::Runner.configure do |config|
     FakeWeb.allow_net_connect = false
   end
 
-  config.before :each do
+  config.after :each do
     Pow('tmp').delete! if Pow('tmp').exists?
     FakeWeb.clean_registry
   end
