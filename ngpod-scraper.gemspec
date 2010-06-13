@@ -16,12 +16,12 @@ Gem::Specification.new do |s|
   s.executables = ["ngpod_scraper"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.md"
+     "README.markdown"
   ]
   s.files = [
     ".gitignore",
      "LICENSE",
-     "README.md",
+     "README.markdown",
      "Rakefile",
      "VERSION",
      "bin/ngpod_scraper",
