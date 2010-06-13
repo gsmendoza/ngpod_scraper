@@ -1,7 +1,8 @@
+require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'pow'
-require 'rubygems'
+require 'RMagick'
 require 'valuable'
 require 'yaml'
 

@@ -22,6 +22,7 @@ module NgpodScraper
         log "Wasn't able to download the photo of the day. Maybe the photo has already been downloaded."
       else
         photo.save
+        photo.save_wallpaper
         log "Downloaded #{photo.path}"
       end
       photo

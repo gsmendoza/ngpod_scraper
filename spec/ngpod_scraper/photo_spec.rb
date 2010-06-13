@@ -45,6 +45,16 @@ describe "Photo" do
     end
   end
 
+  describe "path" do
+    it "should eval the wallpaper_path_format" do
+      file = Pow('spec/fixtures/test.jpg').open
+      time = Time.now
+
+      photo = Photo.new(:url => file.path, :file => file, :wallpaper_path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
+      photo.wallpaper_path.should =~ /#{"tmp/#{time.strftime('%Y/%m/%d/%H')}-#{Pow(file.path).name}"}/
+    end
+  end
+
   describe "save" do
     it "should save the photo in its path" do
       file = Pow('spec/fixtures/test.jpg').open
@@ -57,5 +67,63 @@ describe "Photo" do
     end
   end
 
+  describe "wallpaper_scale" do
+    it "should be the wallpaper_height/image.height if that is the smallest" do
+      file = Pow('spec/fixtures/test.jpg').open
+      photo = Photo.new(:file => file, :path_format => file.path)
+      photo.wallpaper_height = photo.image.rows / 4
+      photo.wallpaper_width  = photo.image.columns / 2
 
+      photo.wallpaper_scale.should == photo.wallpaper_height.to_f / photo.image.rows
+    end
+
+    it "should be the wallpaper_width/image.width if that is the smallest" do
+      file = Pow('spec/fixtures/test.jpg').open
+      photo = Photo.new(:file => file, :path_format => file.path)
+      photo.wallpaper_height = photo.image.rows / 2
+      photo.wallpaper_width  = photo.image.columns / 4
+
+      photo.wallpaper_scale.should == photo.wallpaper_width.to_f / photo.image.columns
+    end
+
+    it "should be 1 if both height and width rations are greater that 1 (don't enlarge the image)" do
+      file = Pow('spec/fixtures/test.jpg').open
+      photo = Photo.new(:file => file, :path_format => file.path)
+      photo.wallpaper_height = photo.image.rows * 2
+      photo.wallpaper_width  = photo.image.columns * 4
+
+      photo.wallpaper_scale.should == 1
+    end
+  end
+
+  describe "wallpaper" do
+    it "should be the image centered in a background" do
+      file = Pow('spec/fixtures/test.jpg').open
+
+      photo = Photo.new(:file => file, :path_format => file.path, :wallpaper_background_color => 'black')
+      photo.wallpaper_height = photo.image.rows * 2
+      photo.wallpaper_width  = photo.image.columns * 4
+
+      #sorry, I don't know how I can test this
+      photo.wallpaper.should be_a(Magick::Image)
+    end
+  end
+
+  describe "save_wallpaper" do
+    it "should save the wallpaper in the wallpaper_path" do
+      file = Pow('spec/fixtures/test.jpg').open
+
+      photo = Photo.new(:file => file, :path_format => file.path)
+      photo.wallpaper_background_color = 'black'
+      photo.wallpaper_height = 800
+      photo.wallpaper_width  = 1280
+      photo.wallpaper_path_format = "tmp/#{Time.now.to_i}-wallpaper.jpg"
+
+      Pow(photo.wallpaper_path).exists?.should_not be_true
+
+      photo.save_wallpaper
+
+      Pow(photo.wallpaper_path).exists?.should be_true
+    end
+  end
 end

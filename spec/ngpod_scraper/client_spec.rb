@@ -22,12 +22,12 @@ describe "Client" do
       @config = {
         :url => url,
         :show_logs => false,
-        :update_wallpaper => false,
         :photo => {
           :path_format => 'tmp/#{year}-#{month}/#{day}-#{hour}.jpg',
           :wallpaper_path_format => 'tmp/photo-of-the-day.jpg',
           :wallpaper_width => 1280,
-          :wallpaper_height => 800
+          :wallpaper_height => 800,
+          :wallpaper_background_color => 'black'
         }
       }
     end
@@ -54,7 +54,7 @@ describe "Client" do
 
     it "should save the photo if the photo does not exist" do
       path = 'tmp/#{year}-#{month}/test.jpg'
-      Pow(path).exists?.should be_false
+      Pow("tmp/#{Time.now.strftime('%Y-%m')}/test.jpg").exists?.should be_false
 
       @config[:photo][:path_format] = path
       client = NgpodScraper::Client.new(@config)
@@ -63,6 +63,19 @@ describe "Client" do
       Pow("tmp/#{Time.now.strftime('%Y-%m')}/test.jpg").exists?.should be_true
     end
 
-    it "should update the wallpaper if the photo does not exist and config[:update_wallpaper] is true"
+    it "should save the wallpaper if the photo does not exist" do
+      path = 'tmp/test.jpg'
+
+      wallpaper_path = 'tmp/wallpaper.jpg'
+      Pow("tmp/wallpaper.jpg").exists?.should be_false
+
+      @config[:photo][:path_format] = path
+      @config[:photo][:wallpaper_path_format] = wallpaper_path
+
+      client = NgpodScraper::Client.new(@config)
+      photo = client.run
+
+      Pow("tmp/wallpaper.jpg").exists?.should be_true
+    end
   end
 end
