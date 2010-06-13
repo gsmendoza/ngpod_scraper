@@ -4,6 +4,8 @@ require 'ngpod_scraper'
 require 'spec'
 require 'spec/autorun'
 
+include NgpodScraper
+
 Spec::Runner.configure do |config|
 
 end
