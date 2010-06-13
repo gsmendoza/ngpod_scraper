@@ -45,5 +45,17 @@ describe "Photo" do
     end
   end
 
+  describe "save" do
+    it "should save the photo in its path" do
+      file = Pow('spec/fixtures/hong-kong.jpg').open
+      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{Time.now.to_i}-#{name}')
+      Pow(photo.path).exists?.should be_false
+
+      photo.save
+
+      Pow(photo.path).exists?.should be_true
+    end
+  end
+
 
 end

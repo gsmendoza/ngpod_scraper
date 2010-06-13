@@ -24,5 +24,11 @@ module NgpodScraper
       path_format_in_a_string = %Q{"#{path_format}"}
       @path = Pow(eval(path_format_in_a_string)).to_s
     end
+
+    def save
+      Pow(path).create "w" do |f|
+        f.write file.read
+      end
+    end
   end
 end
