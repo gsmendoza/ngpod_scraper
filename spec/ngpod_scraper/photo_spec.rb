@@ -16,4 +16,34 @@ describe "Photo" do
       photo.wallpaper_height.should == attributes[:wallpaper_height]
     end
   end
+
+  describe "exists?" do
+    it "should be false if there's no file saved in photo.path" do
+      path = Pow('spec/fixtures/1.jpg')
+      path.exists?.should be_false
+
+      photo = Photo.new(:file => Pow('spec/fixtures/hong-kong.jpg').open, :path_format => 'spec/fixtures/1.jpg')
+      photo.exists?.should be_false
+    end
+
+    it "should be true if there's there's file saved in photo.path" do
+      path = Pow('spec/fixtures/hong-kong.jpg')
+      path.exists?.should be_true
+
+      photo = Photo.new(:file => path.open, :path_format => path.to_s)
+      photo.exists?.should be_true
+    end
+  end
+
+  describe "path" do
+    it "should eval the path_format" do
+      file = Pow('spec/fixtures/hong-kong.jpg').open
+      date = file.mtime
+
+      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
+      photo.path.should =~ /#{"tmp/#{date.year}/#{date.month}/#{date.day}/#{date.hour}-#{Pow(file.path).name}"}/
+    end
+  end
+
+
 end
