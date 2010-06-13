@@ -10,4 +10,17 @@ describe "PhotoPage" do
       photo_page.config.should == config
     end
   end
+
+  describe "photo" do
+    it "should get the photo of the day from the page" do
+      pending
+
+      url = 'file://spec/fixtures/hong-kong.html'
+
+      photo_page = PhotoPage.new(url)
+      photo = photo_page.photo
+
+      photo.should be_a(Photo)
+    end
+  end
 end
