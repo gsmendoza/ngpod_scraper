@@ -19,7 +19,7 @@ module NgpodScraper
       month = time.strftime('%m')
       day = time.strftime('%d')
       hour = time.strftime('%H')
-      name = Pow(file.path).name
+      name = Pow(url).name
 
       path_format_in_a_string = %Q{"#{path_format}"}
       @path = Pow(eval(path_format_in_a_string)).to_s

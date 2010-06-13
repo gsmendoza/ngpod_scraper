@@ -40,7 +40,7 @@ describe "Photo" do
       file = Pow('spec/fixtures/hong-kong.jpg').open
       time = Time.now
 
-      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
+      photo = Photo.new(:url => file.path, :file => file, :path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
       photo.path.should =~ /#{"tmp/#{time.strftime('%Y/%m/%d/%H')}-#{Pow(file.path).name}"}/
     end
   end
@@ -48,7 +48,7 @@ describe "Photo" do
   describe "save" do
     it "should save the photo in its path" do
       file = Pow('spec/fixtures/hong-kong.jpg').open
-      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{name}')
+      photo = Photo.new(:url => file.path, :file => file, :path_format => 'tmp/#{year}/#{name}')
       Pow(photo.path).exists?.should be_false
 
       photo.save
