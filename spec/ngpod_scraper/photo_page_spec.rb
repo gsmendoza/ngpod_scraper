@@ -14,10 +14,10 @@ describe "PhotoPage" do
   describe "photo" do
     it "should get the photo of the day from the page" do
       url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
-      FakeWeb.register_uri(:get, url, :body => 'spec/fixtures/hong-kong.html')
+      FakeWeb.register_uri(:get, url, :body => 'spec/fixtures/test.html')
 
-      photo_url = 'http://s.ngeo.com/wpf/media-live/photos/000/210/custom/21076_1600x1200-wallpaper-cb1276205884.jpg'
-      FakeWeb.register_uri(:get, photo_url, :body => 'spec/fixtures/hong-kong.jpg')
+      photo_url = 'http://s.ngeo.com/wpf/media-live/photos/000/210/cache/istiqlal-mosque-jakarta_21078_990x742.jpg'
+      FakeWeb.register_uri(:get, photo_url, :body => 'spec/fixtures/test.jpg')
 
       photo_page = PhotoPage.new(url)
       photo = photo_page.photo
@@ -29,7 +29,7 @@ describe "PhotoPage" do
   describe "photo_url" do
     it "should be the url of the photo of the day in the page" do
       url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
-      body = Pow('spec/fixtures/hong-kong.html').open.read
+      body = Pow('spec/fixtures/test.html').open.read
       FakeWeb.register_uri(:get, url, :body => body)
 
       photo_page = PhotoPage.new(url)

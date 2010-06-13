@@ -3,4 +3,7 @@ module NgpodScraper
     config = YAML.load_file(path)
     Client.new(config)
   end
+
+  class MissingPhotoUrl < Exception
+  end
 end

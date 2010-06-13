@@ -9,11 +9,11 @@ include NgpodScraper
 
 Spec::Runner.configure do |config|
   config.before :suite do
-    Pow('tmp').delete! if Pow('tmp').exists?
     FakeWeb.allow_net_connect = false
   end
 
   config.before :each do
+    Pow('tmp').delete! if Pow('tmp').exists?
     FakeWeb.clean_registry
   end
 end

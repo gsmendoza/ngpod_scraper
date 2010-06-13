@@ -22,12 +22,12 @@ describe "Photo" do
       path = Pow('spec/fixtures/1.jpg')
       path.exists?.should be_false
 
-      photo = Photo.new(:file => Pow('spec/fixtures/hong-kong.jpg').open, :path_format => 'spec/fixtures/1.jpg')
+      photo = Photo.new(:file => Pow('spec/fixtures/test.jpg').open, :path_format => 'spec/fixtures/1.jpg')
       photo.exists?.should be_false
     end
 
     it "should be true if there's there's file saved in photo.path" do
-      path = Pow('spec/fixtures/hong-kong.jpg')
+      path = Pow('spec/fixtures/test.jpg')
       path.exists?.should be_true
 
       photo = Photo.new(:file => path.open, :path_format => path.to_s)
@@ -37,7 +37,7 @@ describe "Photo" do
 
   describe "path" do
     it "should eval the path_format" do
-      file = Pow('spec/fixtures/hong-kong.jpg').open
+      file = Pow('spec/fixtures/test.jpg').open
       time = Time.now
 
       photo = Photo.new(:url => file.path, :file => file, :path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
@@ -47,7 +47,7 @@ describe "Photo" do
 
   describe "save" do
     it "should save the photo in its path" do
-      file = Pow('spec/fixtures/hong-kong.jpg').open
+      file = Pow('spec/fixtures/test.jpg').open
       photo = Photo.new(:url => file.path, :file => file, :path_format => 'tmp/#{year}/#{name}')
       Pow(photo.path).exists?.should be_false
 

@@ -15,7 +15,11 @@ module NgpodScraper
 
     def photo_url
       page = Nokogiri::HTML(open(url))
-      page.search(".download_link a").attr('href').value
+      begin
+        page.search(".primary_photo img").attr('src').value
+      rescue Exception => e
+        raise MissingPhotoUrl, "Cannot find the photo url: #{e.message}"
+      end
     end
   end
 end

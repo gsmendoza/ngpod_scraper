@@ -2,21 +2,22 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Client" do
   describe "new" do
-    it "should set the the client's config" do
-      config = {:url => "file://spec/fixtures/hong-kong.html"}
+    it "should convert the config's keys to symbols" do
+      config = {'url' => "file://spec/fixtures/test.html", 'photo' => {'path_format' => 'test.jpg'}}
 
       client = NgpodScraper::Client.new(config)
-      client.config.should == config
+      client.config[:url].should == config['url']
+      client.config[:photo][:path_format].should == config['photo']['path_format']
     end
   end
 
   describe "run" do
     before :each do
       url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
-      FakeWeb.register_uri(:get, url, :body => 'spec/fixtures/hong-kong.html')
+      FakeWeb.register_uri(:get, url, :body => 'spec/fixtures/test.html')
 
-      photo_url = 'http://s.ngeo.com/wpf/media-live/photos/000/210/custom/21076_1600x1200-wallpaper-cb1276205884.jpg'
-      FakeWeb.register_uri(:get, photo_url, :body => 'spec/fixtures/hong-kong.jpg')
+      photo_url = 'http://s.ngeo.com/wpf/media-live/photos/000/210/cache/istiqlal-mosque-jakarta_21078_990x742.jpg'
+      FakeWeb.register_uri(:get, photo_url, :body => 'spec/fixtures/test.jpg')
 
       @config = {
         :url => url,
@@ -38,7 +39,7 @@ describe "Client" do
     end
 
     it "should not do anything if the photo exists" do
-      path = 'spec/fixtures/hong-kong.jpg'
+      path = 'spec/fixtures/test.jpg'
       @config[:path_format] = path
       Pow(path).exists?.should be_true
 

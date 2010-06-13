@@ -3,7 +3,7 @@ module NgpodScraper
     attr_reader :config
 
     def initialize(config)
-      @config = config
+      @config = symbolize_keys(config)
     end
 
     def get_photo
@@ -26,5 +26,16 @@ module NgpodScraper
       end
       photo
     end
+
+    private
+
+      def symbolize_keys(hash)
+        result = {}
+        hash.each do |key, value|
+          value = symbolize_keys(value) if value.is_a?(Hash)
+          result[key.to_sym] = value
+        end
+        result
+      end
   end
 end

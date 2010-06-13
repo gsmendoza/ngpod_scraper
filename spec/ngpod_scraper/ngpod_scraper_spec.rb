@@ -10,7 +10,8 @@ describe "NgpodScraper" do
       config.should_not be_empty
 
       client = NgpodScraper.client(path)
-      client.config.should == config
+      client.config[:url].should == config['url']
+      client.config[:photo][:path_format].should == config['photo']['path_format']
     end
   end
 end

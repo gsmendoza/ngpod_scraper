@@ -1,8 +1,8 @@
-url: file://spec/fixtures/hong-kong.html
+url: http://photography.nationalgeographic.com/photography/photo-of-the-day
 show_logs: false
 update_wallpaper: false
 photo:
-  path_format:            'spec/tmp/#{f.name}'
-  wallpaper_path_format:  'spec/tmp/photo-of-the-day.jpg'
+  path_format:            'tmp/#{year}-#{month}/#{name}'
+  wallpaper_path_format:  'tmp/photo-of-the-day.jpg'
   wallpaper_width:        1280
   wallpaper_height:       800
