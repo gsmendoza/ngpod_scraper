@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/ngpod_scraper/ngpod_scraper.rb",
      "lib/ngpod_scraper/photo.rb",
      "lib/ngpod_scraper/photo_page.rb",
+     "ngpod-scraper.gemspec",
      "spec/fixtures/config.yml",
      "spec/fixtures/test.html",
      "spec/fixtures/test.jpg",
@@ -60,12 +61,14 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<nokogiri>, [">= 1.4.2"])
       s.add_runtime_dependency(%q<pow>, [">= 0.2.3"])
+      s.add_runtime_dependency(%q<rmagick>, [">= 2.13.1"])
       s.add_runtime_dependency(%q<valuable>, [">= 0.8.2"])
       s.add_development_dependency(%q<fakeweb>, [">= 1.2.8"])
       s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
     else
       s.add_dependency(%q<nokogiri>, [">= 1.4.2"])
       s.add_dependency(%q<pow>, [">= 0.2.3"])
+      s.add_dependency(%q<rmagick>, [">= 2.13.1"])
       s.add_dependency(%q<valuable>, [">= 0.8.2"])
       s.add_dependency(%q<fakeweb>, [">= 1.2.8"])
       s.add_dependency(%q<rspec>, [">= 1.3.0"])
@@ -73,6 +76,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<nokogiri>, [">= 1.4.2"])
     s.add_dependency(%q<pow>, [">= 0.2.3"])
+    s.add_dependency(%q<rmagick>, [">= 2.13.1"])
     s.add_dependency(%q<valuable>, [">= 0.8.2"])
     s.add_dependency(%q<fakeweb>, [">= 1.2.8"])
     s.add_dependency(%q<rspec>, [">= 1.3.0"])
