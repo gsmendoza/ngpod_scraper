@@ -1,4 +1,5 @@
 .geanyprj
 files/*
-tmp/*
 pkg/*
+rdoc/*
+tmp/*
