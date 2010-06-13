@@ -8,6 +8,14 @@ module NgpodScraper
     end
 
     def photo
+      url = photo_url
+      attributes = (config[:photo] || {}).merge(:url => url, :file => open(photo_url))
+      return Photo.new(attributes)
+    end
+
+    def photo_url
+      page = Nokogiri::HTML(open(url))
+      page.search(".download_link a").attr('href').value
     end
   end
 end

@@ -10,7 +10,9 @@ begin
     gem.email = "[gsmendoza@gmail.com]"
     gem.homepage = "http://github.com/gsmendoza/ngpod-scraper"
     gem.authors = ["George Mendoza"]
+    gem.add_development_dependency "fakeweb", ">= 1.2.8"
     gem.add_development_dependency "rspec", ">= 1.3.0"
+
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

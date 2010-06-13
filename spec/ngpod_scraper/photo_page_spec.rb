@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe "PhotoPage" do
   describe "new" do
     it "should set the url and config of the page" do
-      url = 'file://spec/fixtures/hong-kong.html'
+      url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
       config = {:show_logs => true}
       photo_page = PhotoPage.new(url, config)
       photo_page.url.should == url
@@ -13,14 +13,27 @@ describe "PhotoPage" do
 
   describe "photo" do
     it "should get the photo of the day from the page" do
-      pending
+      url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
+      FakeWeb.register_uri(:get, url, :body => 'spec/fixtures/hong-kong.html')
 
-      url = 'file://spec/fixtures/hong-kong.html'
+      photo_url = 'http://s.ngeo.com/wpf/media-live/photos/000/210/custom/21076_1600x1200-wallpaper-cb1276205884.jpg'
+      FakeWeb.register_uri(:get, photo_url, :body => 'spec/fixtures/hong-kong.jpg')
 
       photo_page = PhotoPage.new(url)
       photo = photo_page.photo
 
       photo.should be_a(Photo)
+    end
+  end
+
+  describe "photo_url" do
+    it "should be the url of the photo of the day in the page" do
+      url = 'http://photography.nationalgeographic.com/photography/photo-of-the-day'
+      body = Pow('spec/fixtures/hong-kong.html').open.read
+      FakeWeb.register_uri(:get, url, :body => body)
+
+      photo_page = PhotoPage.new(url)
+      photo_page.photo_url.gsub(/\s+/, '').length.should > 0
     end
   end
 end
