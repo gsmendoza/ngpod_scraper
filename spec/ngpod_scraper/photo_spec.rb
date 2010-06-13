@@ -38,17 +38,17 @@ describe "Photo" do
   describe "path" do
     it "should eval the path_format" do
       file = Pow('spec/fixtures/hong-kong.jpg').open
-      date = file.mtime
+      time = Time.now
 
       photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{month}/#{day}/#{hour}-#{name}')
-      photo.path.should =~ /#{"tmp/#{date.year}/#{date.month}/#{date.day}/#{date.hour}-#{Pow(file.path).name}"}/
+      photo.path.should =~ /#{"tmp/#{time.strftime('%Y/%m/%d/%H')}-#{Pow(file.path).name}"}/
     end
   end
 
   describe "save" do
     it "should save the photo in its path" do
       file = Pow('spec/fixtures/hong-kong.jpg').open
-      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{Time.now.to_i}-#{name}')
+      photo = Photo.new(:file => file, :path_format => 'tmp/#{year}/#{name}')
       Pow(photo.path).exists?.should be_false
 
       photo.save

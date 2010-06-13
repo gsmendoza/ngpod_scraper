@@ -14,11 +14,11 @@ module NgpodScraper
     def path
       return @path if defined?(@path)
 
-      date = file.mtime
-      year = date.year
-      month = date.month
-      day = date.day
-      hour = date.hour
+      time = Time.now
+      year = time.strftime('%Y')
+      month = time.strftime('%m')
+      day = time.strftime('%d')
+      hour = time.strftime('%H')
       name = Pow(file.path).name
 
       path_format_in_a_string = %Q{"#{path_format}"}
