@@ -1,7 +1,3 @@
-gem 'nokogiri', '>= 1.4.2'
-gem 'pow', '>= 0.2.3'
-gem 'valuable', '>= 0.8.2'
-
 require 'nokogiri'
 require 'open-uri'
 require 'pow'

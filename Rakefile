@@ -10,6 +10,9 @@ begin
     gem.email = "[gsmendoza@gmail.com]"
     gem.homepage = "http://github.com/gsmendoza/ngpod-scraper"
     gem.authors = ["George Mendoza"]
+    gem.add_dependency 'nokogiri', '>= 1.4.2'
+    gem.add_dependency 'pow', '>= 0.2.3'
+    gem.add_dependency 'valuable', '>= 0.8.2'
     gem.add_development_dependency "fakeweb", ">= 1.2.8"
     gem.add_development_dependency "rspec", ">= 1.3.0"
 
