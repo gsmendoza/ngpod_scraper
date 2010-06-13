@@ -1,0 +1,8 @@
+url: file://../fixtures/hong-kong.html
+show_logs: false
+update_wallpaper: false
+photo:
+  path_format:            'spec/tmp/#{f.name}'
+  wallpaper_path_format:  'spec/tmp/photo-of-the-day.jpg'
+  wallpaper_width:        1280
+  wallpaper_height:       800
