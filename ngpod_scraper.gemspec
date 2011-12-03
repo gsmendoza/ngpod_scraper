@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{ngpod-scraper}
+  s.name = %q{ngpod_scraper}
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
      "lib/ngpod_scraper/ngpod_scraper.rb",
      "lib/ngpod_scraper/photo.rb",
      "lib/ngpod_scraper/photo_page.rb",
-     "ngpod-scraper.gemspec",
+     "ngpod_scraper.gemspec",
      "spec/fixtures/config.yml",
      "spec/fixtures/test.html",
      "spec/fixtures/test.jpg",
@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/gsmendoza/ngpod-scraper}
+  s.homepage = %q{http://github.com/gsmendoza/ngpod_scraper}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
