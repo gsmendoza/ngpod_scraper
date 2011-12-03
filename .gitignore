@@ -1,5 +1,9 @@
-.geanyprj
 files/*
 pkg/*
 rdoc/*
 tmp/*
+*.bak
+*.gem
+.bundle
+.geanyprj
+Gemfile.lock
