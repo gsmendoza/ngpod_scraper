@@ -1,9 +1,6 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'fakeweb'
 require 'ngpod_scraper'
-require 'spec'
-require 'spec/autorun'
+require 'bundler/setup'
+require 'fakeweb'
 
 include NgpodScraper
 

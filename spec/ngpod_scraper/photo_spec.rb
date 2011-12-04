@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 describe "Photo" do
   describe "new" do
     it "should set its attributes" do

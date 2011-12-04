@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
 require 'ngpod_scraper'
 
 NgpodScraper.client(ARGV[0]).run
