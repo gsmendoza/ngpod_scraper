@@ -7,7 +7,7 @@ and save it as a desktop wallpaper.
 Installation
 ------------------------------------------------------------------------
 
-    gem install ngpod-scraper
+    gem install ngpod_scraper
 
 Requirements
 ------------------------------------------------------------------------
