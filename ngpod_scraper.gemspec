@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency "fakeweb", "~> 1.2.8"
-  s.add_development_dependency "rspec", "~> 1.3.0"
+  s.add_development_dependency "rspec", "~> 2.14.1"
 
   s.add_runtime_dependency "nokogiri", ">= 1.4.2"
   s.add_runtime_dependency "pow", ">= 0.2.3"
